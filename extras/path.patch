@@ -39,7 +39,7 @@ diff -Naur onvif_simple_server.ori/wsd_simple_server.c onvif_simple_server/wsd_s
 -#define DEFAULT_LOG_FILE "/var/log/wsd_simple_server.log"
 -#define TEMPLATE_DIR "/etc/wsd_simple_server"
 +#define DEFAULT_LOG_FILE "/var/log//wsd_simple_server.log"
-+#define TEMPLATE_DIR "/usr/local/etc/etc/wsd_simple_server"
++#define TEMPLATE_DIR "/usr/local/etc/wsd_simple_server"
  
  #define RECV_BUFFER_LEN 4096
  

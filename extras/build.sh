@@ -19,7 +19,7 @@ LIGHTTPD=lighttpd-1.4.73
 # Don't edit below this line
 
 cd ../..
-patch -p0 < onvif_simple_server/extras/path.patch
+# patch -p0 < onvif_simple_server/extras/path.patch
 cd onvif_simple_server/extras
 
 mkdir -p $INSTALL_DIR/bin
