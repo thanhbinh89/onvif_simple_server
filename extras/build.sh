@@ -8,9 +8,9 @@
 # source your environment here: $CC, $CXX, $STIP, etc...
 # and set CROSS_COMPILE_HOST variable
 
-#. /home/user/cross-compile/env
+. /home/ubuntu/workspace/onvif_simple_server/env
 #CROSS_COMPILE_HOST="--host=arm-openwrt-linux"
-CROSS_COMPILE_HOST=""
+CROSS_COMPILE_HOST="--host=arm-rockchip830-linux-uclibcgnueabihf"
 
 INSTALL_DIR="_install"
 export HAVE_MBEDTLS=1
@@ -32,13 +32,14 @@ mkdir -p $INSTALL_DIR/www/onvif
 if [ ! -f lighttpd-1.4.73.tar.gz ]; then
     wget https://download.lighttpd.net/lighttpd/releases-1.4.x/$LIGHTTPD.tar.gz
 fi
-tar zxvf $LIGHTTPD.tar.gz
+# tar zxvf $LIGHTTPD.tar.gz
 cd $LIGHTTPD
 
 # Run configure with minimal options
-./configure $CROSS_COMPILE_HOST --disable-ipv6 --without-pcre2 --without-zlib
+./configure $CROSS_COMPILE_HOST CC=$CC CXX=$CXX --disable-ipv6 --without-pcre2 --without-zlib
 
-make
+# make clean
+make -j4
 cd ..
 
 # Don't use 'make install'
@@ -72,8 +73,8 @@ if [ "$HAVE_MBEDTLS" == "1" ]; then
     fi
     cp -f mbedtls_config.h mbedtls/include/mbedtls/
     cd mbedtls
-#    make clean
-    make no_test
+    # make clean
+    make CC=$CC CXX=$CXX CFLAGS="--sysroot=${SYS_ROOT}" LDFLAGS="--sysroot=${SYS_ROOT}" -j4
     cd ..
 else
     if [ ! -f crypt-1.18.2.tar.xz ]; then
@@ -84,20 +85,25 @@ else
         ln -s libtomcrypt-1.18.2 libtomcrypt
     fi
     cd libtomcrypt
-#    make clean
-    CFLAGS="-DLTC_NOTHING -DLTC_SHA1 -DLTC_BASE64" make
+    # make clean
+    CFLAGS="-DLTC_NOTHING -DLTC_SHA1 -DLTC_BASE64" make CC=$CC CXX=$CXX -j4
     cd ..
 fi
 
 ### ONVIF_SIMPLE_SERVER ###
 cd ..
-make
+make clean
+make -j4
 cd extras
 
 cp ../onvif_simple_server $INSTALL_DIR/www/onvif
+rm $INSTALL_DIR/www/onvif/device_service
 ln -s ./onvif_simple_server $INSTALL_DIR/www/onvif/device_service
+rm $INSTALL_DIR/www/onvif/events_service
 ln -s ./onvif_simple_server $INSTALL_DIR/www/onvif/events_service
+rm $INSTALL_DIR/www/onvif/media_service
 ln -s ./onvif_simple_server $INSTALL_DIR/www/onvif/media_service
+rm $INSTALL_DIR/www/onvif/ptz_service
 ln -s ./onvif_simple_server $INSTALL_DIR/www/onvif/ptz_service
 cp -R ../device_service_files $INSTALL_DIR/www/onvif
 cp -R ../events_service_files $INSTALL_DIR/www/onvif

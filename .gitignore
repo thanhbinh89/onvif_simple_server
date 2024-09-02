@@ -1,0 +1,80 @@
+# Prerequisites
+*.d
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Linker output
+*.ilk
+*.map
+*.exp
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+# *.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
+
+**/.ninja_log
+**/.ninja_deps
+
+**/.history
+**/build*
+**/Debug
+**/Release
+**/.vscode/
+
+extras/_install/bin
+extras/_install/lib
+extras/_install/www/onvif/onvif_simple_server
+extras/_install/www/onvif/device_service
+extras/_install/www/onvif/events_service
+extras/_install/www/onvif/media_service
+extras/_install/www/onvif/ptz_service
+
+extras/lighttpd-1.4.73/
+extras/lighttpd-1.4.73.tar.gz
+extras/mbedtls
+extras/mbedtls-3.4.0
+extras/v3.4.0.tar.gz
+
+onvif_notify_server
+onvif_simple_server
+wsd_simple_server
+
