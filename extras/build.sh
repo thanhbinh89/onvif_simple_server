@@ -73,7 +73,7 @@ if [ "$HAVE_MBEDTLS" == "1" ]; then
     fi
     cp -f mbedtls_config.h mbedtls/include/mbedtls/
     cd mbedtls
-    # make clean
+    make clean
     make CC=$CC CXX=$CXX CFLAGS="--sysroot=${SYS_ROOT}" LDFLAGS="--sysroot=${SYS_ROOT}" -j4
     cd ..
 else
@@ -93,7 +93,7 @@ fi
 ### ONVIF_SIMPLE_SERVER ###
 cd ..
 make clean
-make -j4
+make
 cd extras
 
 cp ../onvif_simple_server $INSTALL_DIR/www/onvif
