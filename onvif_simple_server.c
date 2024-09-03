@@ -36,7 +36,7 @@
 #include "utils.h"
 #include "log.h"
 
-#define DEFAULT_CONF_FILE "/usr/local/etc/onvif_simple_server.conf"
+#define DEFAULT_CONF_FILE "/oem/usr/etc/onvif_simple_server.conf"
 #define DEFAULT_LOG_FILE "/var/log/onvif_simple_server.log"
 #define DEBUG_FILE "/tmp/onvif_simple_server.debug"
 
